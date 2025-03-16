@@ -1,0 +1,36 @@
+{
+  "name": "problem5",
+  "version": "1.0.0",
+  "description": "Develop a backend server with ExpressJS. You are required to build a set of CRUD interface that allow a user to interact with the service. You are required to use TypeScript for this task. 1. Interface functionalities: a. Create a resource. b. List resources with basic filters. c. Get details of a resource. d. Update resource details. e. Delete a resource. 2. You should connect your backend service with a simple database for data persistence. 3. Provide README.md for the configuration and the way to run application.",
+  "main": "app.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/helmet": "^0.0.48",
+    "@types/joi": "^17.2.2",
+    "@types/morgan": "^1.9.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "joi": "^17.13.3",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.13.0",
+    "nodemon": "^3.1.9",
+    "sequelize-typescript": "^2.1.6",
+    "typeorm": "^0.3.21"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.2"
+  }
+}

@@ -1,0 +1,50 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  database:
+      image: mysql:8.0
+      environment:
+        MYSQL_USER: admin
+        MYSQL_PASSWORD: password
+        MYSQL_ROOT_PASSWORD: password
+        MYSQL_DATABASE: coding_challenges
+      command: --default-authentication-plugin=mysql_native_password
+      ports:
+        - "3306:3306"
+      volumes:
+        - mysql-data:/var/lib/mysql
+        - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      networks:
+        - app-network
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=${NODE_ENV:-dev}
+      - PORT=${PORT:-3000}
+      - DB_HOST=${DB_HOST:-mysql}
+      - DB_PORT=${DB_PORT:-3306}
+      - DB_USER=${DB_USER:-root}
+      - DB_PASSWORD=${DB_PASSWORD:-password}
+      - DB_NAME=${DB_NAME:-coding_challenges}
+    depends_on:
+      - database
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - app-network
+
+  
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
